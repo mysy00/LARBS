@@ -13,9 +13,9 @@ dialog --defaultno --title "DON'T BE A BRAINLET!" --yesno "Do you think I'm memi
 
 dialog --no-cancel --inputbox "Enter a name for your computer." 10 60 2> comp
 
-dialog --defaultno --title "Time Zone select" --yesno "Do you want use the default time zone(America/New_York)?.\n\nPress no for select your own time zone"  10 60 && echo "America/New_York" > tz.tmp || tzselect > tz.tmp
+dialog --defaultno --title "Time Zone select" --yesno "Do you want to use the default time zone (Europe/Warsaw)?.\n\nPress no for select your own time zone"  10 60 && echo "Europe/Warsaw" > tz.tmp || tzselect > tz.tmp
 
-dialog --no-cancel --inputbox "Enter partitionsize in gb, separated by space (swap & root)." 10 60 2>psize
+dialog --no-cancel --inputbox "Enter partition size in gb, separated by space (swap & root)." 10 60 2>psize
 
 IFS=' ' read -ra SIZE <<< $(cat psize)
 
@@ -25,6 +25,7 @@ if ! [ ${#SIZE[@]} -eq 2 ] || ! [[ ${SIZE[0]} =~ $re ]] || ! [[ ${SIZE[1]} =~ $r
 fi
 
 timedatectl set-ntp true
+loadkeys pl
 
 cat <<EOF | fdisk /dev/sda
 o
@@ -32,7 +33,7 @@ n
 p
 
 
-+200M
++512M
 n
 p
 
@@ -53,7 +54,7 @@ partprobe
 
 yes | mkfs.ext4 /dev/sda4
 yes | mkfs.ext4 /dev/sda3
-yes | mkfs.ext4 /dev/sda1
+yes | mkfs.fat -F32 /dev/sda1
 mkswap /dev/sda2
 swapon /dev/sda2
 mount /dev/sda3 /mnt
@@ -64,13 +65,13 @@ mount /dev/sda4 /mnt/home
 
 pacman -Sy --noconfirm archlinux-keyring
 
-pacstrap /mnt base base-devel
+pacstrap /mnt linux linux-firmware base base-devel
 
 genfstab -U /mnt >> /mnt/etc/fstab
 cat tz.tmp > /mnt/tzfinal.tmp
 rm tz.tmp
 mv comp /mnt/etc/hostname
-curl https://raw.githubusercontent.com/LukeSmithxyz/LARBS/master/testing/chroot.sh > /mnt/chroot.sh && arch-chroot /mnt bash chroot.sh && rm /mnt/chroot.sh
+curl https://raw.githubusercontent.com/mysy00/LARBS/master/testing/chroot.sh > /mnt/chroot.sh && arch-chroot /mnt bash chroot.sh && rm /mnt/chroot.sh
 
 
 dialog --defaultno --title "Final Qs" --yesno "Reboot computer?"  5 30 && reboot
