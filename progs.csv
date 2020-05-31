@@ -5,7 +5,7 @@
 ,bspwm,"is the main graphical user interface and window manager."
 ,sxhkd,"is a simple X hotkey daemon."
 A,polybar,"is the status bar."
-A,starship."is a fancy prompt."
+A,starship,"is a fancy prompt."
 ,python-pywal,"generates color schemes based on an image"
 ,ttf-linux-libertine,"provides the sans and serif fonts for LARBS."
 ,ttf-opensans,"provides fonts used in telegram."
