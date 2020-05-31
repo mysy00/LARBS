@@ -2,6 +2,7 @@
 ,xorg-server,"is the graphical server."
 ,xorg-xwininfo,"allows querying information about windows."
 ,xorg-xinit,"starts the graphical server."
+,dash,"is a fast POSIX-compliant implementation of /bin/sh."
 ,bspwm,"is the main graphical user interface and window manager."
 ,sxhkd,"is a simple X hotkey daemon."
 A,polybar,"is the status bar."
