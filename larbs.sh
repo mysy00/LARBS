@@ -227,6 +227,10 @@ systembeepoff
 chsh -s /bin/zsh $name >/dev/null 2>&1
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 
+# Create additional directories
+sudo -u "$name" mkdir -p "/home/$name/Projects"
+sudo -u "$name" mkdir -p "/home/$name/Pictures"
+
 # dbus UUID must be generated for Artix runit.
 dbus-uuidgen > /var/lib/dbus/machine-id
 
