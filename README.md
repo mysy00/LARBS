@@ -32,6 +32,7 @@ Main changes assuming you're using my dotfiles (mostly Luke's):
 - Alacritty as the terminal emulator
 - Starship.rs as the prompt
 - Using text expansion provided by espanso
+- The arch installer works on UEFI now (dropped legacy bios support)
 - More bloat
 - Waaay more bloat cuz who cares bruh
 
