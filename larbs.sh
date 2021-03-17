@@ -203,7 +203,6 @@ yes | sudo -u "$name" $aurhelper -S libxft-bgra-git >/dev/null 2>&1
 # Install the dotfiles in the user's home directory
 putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
 rm -f "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
-
 # make git ignore deleted LICENSE & README.md files
 yadm update-index --assume-unchanged "/home/$name/README.md" "/home/$name/LICENSE"
 
